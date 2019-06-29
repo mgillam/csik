@@ -8,29 +8,29 @@ const listDir = require('./lib/listDir')
 
 const app = express()
 const port = 3000
-const getPayload = loadPayloads()
+const getLoader = loadLoaders()
 
 app.get('/', (req, res) => {
     return res.send(
-      getPayload('soxfil')({ HOST: req.hostname })
+      getLoader('soxfil')({ HOST: req.hostname })
     )
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-function loadPayloads() {
-  const payloads = listDir(
-    resolve('./scripts/')).reduce(
+function loadLoaders() {
+  const loaders = listDir(
+    resolve('./loaders/')).reduce(
       (payloads, file) => {
         return _.set(payloads, _.trimEnd(file, '.js'), 
         renderable(
           loadScript(
-            resolve(`./scripts/${file}`)
+            resolve(`./loaders/${file}`)
           )
       )
     )
   }, {})
   return (key) => {
-    return payloads[key]
+    return loaders[key]
   }
 }
