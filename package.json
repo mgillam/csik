@@ -17,6 +17,9 @@
     "plugins": [
       "fp"
     ],
+    "parserOptions": {
+      "sourceType": "module"
+    },
     "rules": {
       "fp/no-arguments": "error",
       "fp/no-class": "error",
@@ -27,7 +30,7 @@
       "fp/no-loops": "error",
       "fp/no-mutating-assign": "error",
       "fp/no-mutating-methods": "error",
-      "fp/no-mutation": "error",
+      "fp/no-mutation": ["error", { "commonjs": true }],
       "fp/no-nil": "error",
       "fp/no-proxy": "error",
       "fp/no-rest-parameters": "error",
@@ -37,5 +40,10 @@
       "fp/no-valueof-field": "error",
       "no-var": "error"
     }
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.11"
   }
 }
