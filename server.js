@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     )
 })
 
-app.listen(port, () => console.log(`CSIK Server listening on port ${port}!`))
+app.listen(port, () => console.log(`CSIK listening on port ${port}!`))
 
 function loadLoaders() {
   const loaders = listDir(

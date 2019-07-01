@@ -10,6 +10,10 @@
     "eslint": "^6.0.0",
     "eslint-plugin-fp": "^2.3.0"
   },
+  "scripts": {
+    "start": "node -r esm server.js",
+    "build": "rollup --config --format iife"
+  },
   "eslintConfig": {
     "env": {
       "es6": true
@@ -30,7 +34,12 @@
       "fp/no-loops": "error",
       "fp/no-mutating-assign": "error",
       "fp/no-mutating-methods": "error",
-      "fp/no-mutation": ["error", { "commonjs": true }],
+      "fp/no-mutation": [
+        "error",
+        {
+          "commonjs": true
+        }
+      ],
       "fp/no-nil": "error",
       "fp/no-proxy": "error",
       "fp/no-rest-parameters": "error",
@@ -44,6 +53,10 @@
   "dependencies": {
     "express": "^4.17.1",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "rollup": "^1.16.3",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-multi-input": "^1.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0"
   }
 }

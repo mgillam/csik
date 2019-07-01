@@ -1,4 +1,4 @@
-const generateCharsets = require('../lib/generateCharsets')
+const generateCharsets = require('../lib/charsets/generate')
 const renderable = require('../lib/renderable')
 
 const script = '$.get("$$PAYLOAD_URL$$")'
