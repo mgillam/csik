@@ -1,4 +1,4 @@
-awindow.x_id = 'not-sup';
+window.x_id = 'not-sup';
 window.xfilr = (function() {
   fetch('$$HOST$$/id')
       .then(function(res) {
