@@ -6,47 +6,26 @@
   "repository": "git@github.com:mgillam/csik.git",
   "author": "Mic <mic@secureideas.com>",
   "license": "GPL-3.0",
+  "type": "module",
   "devDependencies": {
-    "eslint": "^6.0.0",
-    "eslint-plugin-fp": "^2.3.0"
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.0"
   },
   "scripts": {
-    "start": "node -r esm server.js",
+    "start": "node --experimental-modules server.js",
     "build": "rollup --config --format iife"
   },
   "eslintConfig": {
     "env": {
       "es6": true
     },
-    "plugins": [
-      "fp"
-    ],
+    "parser": "babel-eslint",
     "parserOptions": {
-      "sourceType": "module"
+      "sourceType": "module",
+      "ecmaVersion": 2017,
+      "allowImportExportEverywhere": true
     },
     "rules": {
-      "fp/no-arguments": "error",
-      "fp/no-class": "error",
-      "fp/no-delete": "error",
-      "fp/no-events": "error",
-      "fp/no-get-set": "error",
-      "fp/no-let": "error",
-      "fp/no-loops": "error",
-      "fp/no-mutating-assign": "error",
-      "fp/no-mutating-methods": "error",
-      "fp/no-mutation": [
-        "error",
-        {
-          "commonjs": true
-        }
-      ],
-      "fp/no-nil": "error",
-      "fp/no-proxy": "error",
-      "fp/no-rest-parameters": "error",
-      "fp/no-this": "error",
-      "fp/no-throw": "error",
-      "fp/no-unused-expression": "error",
-      "fp/no-valueof-field": "error",
       "no-var": "error"
     }
   },

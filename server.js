@@ -1,32 +1,34 @@
-/*eslint-disable fp/no-unused-expression*/
-const express = require('express')
-const { resolve } = require('path')
-const _ = require('lodash')
-const listDir = require('./lib/listDir')
+import express from 'express'
+import { resolve } from 'path'
+import ld from 'lodash'
+import listDir from './lib/listDir.js'
 
 const app = express()
 const port = 3000
-const getLoader = loadLoaders()
+let getLoader = () => { console.log('Not ready') }
+
+loadLoaders().then((loaderGetter) => {
+  getLoader = loaderGetter
+})
 
 const payloadUrl = 'http://localhost:3000/testPayload'
 
-app.get('/', (req, res) => {
+app.get('/:loader', (req, res) => {
     return res.send(
-      getLoader('jqueryGet').script({ PAYLOAD_URL: payloadUrl })
+      getLoader(req.params.loader).default.script({ PAYLOAD_URL: payloadUrl })
     )
 })
 
 app.listen(port, () => console.log(`CSIK listening on port ${port}!`))
 
-function loadLoaders() {
-  const loaders = listDir(
-    resolve('./loaders/')).reduce(
-      (payloads, file) => {
-        return _.set(payloads, _.trimEnd(file, '.js'), 
-          require(`./loaders/${file}`)
-        )
-  }, {})
+async function loadLoaders() {
+  let loaders = await listDir(resolve('./loaders/'))
+  let loaderMap = {}
+  while(loaders.length > 0) {
+    let loader = loaders.shift()
+    ld.set(loaderMap, ld.trimEnd(loader, '.js'), await import(`./loaders/${loader}`))
+  }
   return (key) => {
-    return loaders[key]
+    return loaderMap[key] || 'Not a loader'
   }
 }

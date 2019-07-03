@@ -1,3 +1,4 @@
 import * as exfil from '../attacks/exfiltrators/fetch'
 
-const test = 'foo'
+const test = console.log
+test('foo')
