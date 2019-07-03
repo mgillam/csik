@@ -2,6 +2,7 @@
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import multiInput from 'rollup-plugin-multi-input';
+import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 
 export default {
   input: ['payload_src/*.js'],
@@ -15,7 +16,11 @@ export default {
       jsnext: true,
       main: true
     }),
-
+   /* obfuscatorPlugin({ //Stubbed for later inclusion
+        compact: true,
+        target: 'browser',
+        renameGlobals: true
+    }),*/
     commonjs({
       // non-CommonJS modules will be ignored, but you can also
       // specifically include/exclude files
