@@ -1,10 +1,12 @@
 import express from 'express'
 import { resolve } from 'path'
 import ld from 'lodash'
+import cors from 'cors'
 import listDir from './lib/listDir.js'
 
 const app = express()
 const port = 3000
+
 let loaders = () => { console.log('Not ready') }
 
 loadLoaders().then((loaderGetter) => {
@@ -12,6 +14,8 @@ loadLoaders().then((loaderGetter) => {
 })
 
 const payloadUrl = 'http://localhost:3000/testPayload'
+
+app.use(cors())
 
 app.get('/loaders', (req, res) => {
   return res.json(loaders.list())
@@ -25,7 +29,7 @@ app.get('/loaders/:loader', (req, res) => {
     )
 })
 
-app.listen(port, () => console.log(`CSIK listening on port ${port}!`))
+app.listen(port, () => console.log(`CSIK Server listening on port ${port}!`))
 
 async function loadLoaders() {
   let loaders = await listDir(resolve('./loaders/'))
