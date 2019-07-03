@@ -2,7 +2,7 @@
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import multiInput from 'rollup-plugin-multi-input';
-import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
+// import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 
 export default {
   input: ['payload_src/*.js'],
