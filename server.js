@@ -13,7 +13,7 @@ loadLoaders().then((loaderGetter) => {
   loaders = loaderGetter
 })
 
-const payloadUrl = 'http://localhost:3000/testPayload'
+const payloadUrl = 'http://localhost:3000/payload/recon'
 
 app.use(cors())
 
@@ -27,6 +27,10 @@ app.get('/loaders/:loader', (req, res) => {
     return res.send(
       loaders.get(req.params.loader).script({ PAYLOAD_URL: payloadUrl })
     )
+})
+
+app.get('/payload/:payload', (req, res) => {
+  res.sendFile(resolve('./payloads/' + req.params.payload + '.js'))
 })
 
 app.listen(port, () => console.log(`CSIK Server listening on port ${port}!`))
