@@ -5,7 +5,7 @@ import multiInput from 'rollup-plugin-multi-input';
 // import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 
 export default {
-  input: ['payload_src/*.js'],
+  input: 'payload_src/socketControl.js',/*['payload_src/*.js'],*/
   output: {
     dir: 'payloads',
     format: 'iife'
@@ -13,8 +13,9 @@ export default {
   plugins: [
     multiInput({ relative: 'payload_src/' }),
     nodeResolve({
-      jsnext: true,
-      main: true
+      mainFields: ['browser'],
+      preferBuiltins: false,
+      modulesOnly: false
     }),
    /* obfuscatorPlugin({ //Stubbed for later inclusion
         compact: true,

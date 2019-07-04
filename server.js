@@ -17,7 +17,7 @@ loadLoaders().then((loaderGetter) => {
   loaders = loaderGetter
 })
 
-const payloadUrl = 'http://localhost:3000/payload/recon'
+const payloadUrl = 'http://localhost:3000/payload/socketControl'
 
 app.use(cors())
 
