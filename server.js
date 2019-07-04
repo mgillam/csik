@@ -1,10 +1,14 @@
 import express from 'express'
+import http from 'http'
+import socketio from 'socket.io'
 import { resolve } from 'path'
 import ld from 'lodash'
 import cors from 'cors'
 import listDir from './lib/listDir.js'
 
 const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
 const port = 3000
 
 let loaders = () => { console.log('Not ready') }
@@ -33,7 +37,11 @@ app.get('/payload/:payload', (req, res) => {
   res.sendFile(resolve('./payloads/' + req.params.payload + '.js'))
 })
 
-app.listen(port, () => console.log(`CSIK Server listening on port ${port}!`))
+io.on('connection', (socket) => {
+  console.log('Connection received')
+})
+
+server.listen(port, () => console.log(`CSIK Server listening on port ${port}!`))
 
 async function loadLoaders() {
   let loaders = await listDir(resolve('./loaders/'))
