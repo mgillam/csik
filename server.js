@@ -39,6 +39,7 @@ app.get('/payload/:payload', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('Connection received')
+  socket.emit('run', 'alert("xss")')
 })
 
 server.listen(port, () => console.log(`CSIK Server listening on port ${port}!`))
