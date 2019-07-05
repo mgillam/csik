@@ -2,6 +2,7 @@
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import multiInput from 'rollup-plugin-multi-input';
+import minify from 'rollup-plugin-babel-minify';
 // import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
 
 export default {
@@ -49,6 +50,10 @@ export default {
       // or a `id => boolean` function. Only use this
       // option if you know what you're doing!
       ignore: [ 'conditional-runtime-dependency' ]
+    }),
+    minify({
+      sourceMap: false,
+      comments: false
     })
   ]
 };

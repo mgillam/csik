@@ -9,11 +9,16 @@
   "type": "module",
   "devDependencies": {
     "babel-eslint": "^10.0.2",
-    "eslint": "^6.0.0"
+    "chai": "^4.2.0",
+    "eslint": "^6.0.0",
+    "esm": "^3.2.25",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
   },
   "scripts": {
     "start": "node --experimental-modules server.js",
-    "build": "rollup --config --format iife"
+    "build": "rollup --config --format iife",
+    "test": "nyc mocha"
   },
   "eslintConfig": {
     "env": {
@@ -35,6 +40,7 @@
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.11",
     "rollup": "^1.16.3",
+    "rollup-plugin-babel-minify": "^9.0.0",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-javascript-obfuscator": "^1.0.4",
     "rollup-plugin-multi-input": "^1.0.2",
