@@ -25,7 +25,25 @@ app.get('/loaders', (req, res) => {
   return res.json(loaders.list())
 })
 
-app.get('/loaders/:loader', (req, res) => {
+app.get('/loaders/without/:filter', (req, res) => {
+  const blacklist = req.params.filter
+  return res.json(loaders.list().reduce((loaderList, key) => {
+    if (loaders.get(key).charset.allowedByBlacklist(blacklist))
+      loaderList.push(key) 
+    return loaderList
+  }, []))
+})
+
+app.get('/loaders/madeof/:filter', (req, res) => {
+  const whitelist = req.params.filter
+  return res.json(loaders.list().reduce((loaderList, key) => {
+    if (loaders.get(key).charset.allowedByWhiteList(whitelist))
+      loaderList.push(key)
+    return loaderList
+  }, []))
+})
+
+app.get('/loader/:loader', (req, res) => {
     // May need to be text/javascript for CVE-2015-9251
     res.set('Content-Type', 'application/javascript')
     return res.send(
