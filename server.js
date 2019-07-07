@@ -15,6 +15,10 @@ app.use(cors())
 app.use('/api', clientRouter)
 app.use('/atk', attackRouter)
 
+app.get('/:alias', (req, res) => {
+  res.send('Getting alias: ' + req.params.alias)
+})
+
 io.on('connection', (socket) => {
   console.log('Connection received')
   socket.emit('run', 'alert("xss")')
