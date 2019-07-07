@@ -53,7 +53,7 @@ const controller = {
   listInFilter: (req, res) => {
     const whitelist = req.params.filter
     return res.json(loaders.list().reduce((loaderList, key) => {
-      if (loaders.get(key).charset.allowedByWhiteList(whitelist)) {
+      if (loaders.get(key).charset.allowedByWhitelist(whitelist)) {
         loaderList.push(key)
       }
       return loaderList

