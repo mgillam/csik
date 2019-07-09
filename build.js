@@ -2,6 +2,7 @@ import rollup from 'rollup'
 import commonjs from 'rollup-plugin-commonjs'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import minify from 'rollup-plugin-babel-minify'
+import renderable from './lib/renderable.js'
 
 const rollupBaseConfig = {
   output: {
@@ -57,5 +58,48 @@ const rollupBaseConfig = {
 export async function buildPayload (name) {
   // let config = Object.assign({ input: filename }, rollupBaseConfig)
   const bundle = await rollup.rollup({ input: `payload_src/${name}.js` })
+  const { output } = await bundle.generate(rollupBaseConfig)
+  console.log('output', output)
+  for (const chunkOrAsset of output) {
+    if (chunkOrAsset.isAsset) {
+      // For assets, this contains
+      // {
+      //   isAsset: true,                 // signifies that this is an asset
+      //   fileName: string,              // the asset file name
+      //   source: string | Buffer        // the asset source
+      // }
+      console.log('Asset', chunkOrAsset)
+    } else {
+      // For chunks, this contains
+      // {
+      //   code: string,                  // the generated JS code
+      //   dynamicImports: string[],      // external modules imported dynamically by the chunk
+      //   exports: string[],             // exported variable names
+      //   facadeModuleId: string | null, // the id of a module that this chunk corresponds to
+      //   fileName: string,              // the chunk file name
+      //   imports: string[],             // external modules imported statically by the chunk
+      //   isDynamicEntry: boolean,       // is this chunk a dynamic entry point
+      //   isEntry: boolean,              // is this chunk a static entry point
+      //   map: string | null,            // sourcemaps if present
+      //   modules: {                     // information about the modules in this chunk
+      //     [id: string]: {
+      //       renderedExports: string[]; // exported variable names that were included
+      //       removedExports: string[];  // exported variable names that were removed
+      //       renderedLength: number;    // the length of the remaining code in this module
+      //       originalLength: number;    // the original length of the code in this module
+      //     };
+      //   },
+      //   name: string                   // the name of this chunk as used in naming patterns
+      // }
+      console.log('Chunk', chunkOrAsset.modules)
+    }
+  }
   await bundle.write(rollupBaseConfig)
+}
+
+export async function renderPayload (name) {
+  // let config = Object.assign({ input: filename }, rollupBaseConfig)
+  const bundle = await rollup.rollup({ input: `payload_src/${name}.js` })
+  const { output } = await bundle.generate(rollupBaseConfig)
+  return renderable(output[0].code)
 }
