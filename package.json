@@ -52,6 +52,7 @@
     "rollup-plugin-javascript-obfuscator": "^1.0.4",
     "rollup-plugin-multi-input": "^1.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "webpack": "^4.35.3"
   }
 }

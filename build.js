@@ -1,49 +1,45 @@
-// rollup.config.js
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import multiInput from 'rollup-plugin-multi-input';
-import minify from 'rollup-plugin-babel-minify';
-// import obfuscatorPlugin from 'rollup-plugin-javascript-obfuscator'
+import rollup from 'rollup'
+import commonjs from 'rollup-plugin-commonjs'
+import nodeResolve from 'rollup-plugin-node-resolve'
+import minify from 'rollup-plugin-babel-minify'
 
-export default {
-  input: 'payload_src/socketControl.js',/*['payload_src/*.js'],*/
+const rollupBaseConfig = {
   output: {
     dir: 'payloads',
     format: 'iife'
   },
   plugins: [
-    multiInput({ relative: 'payload_src/' }),
     nodeResolve({
       mainFields: ['browser'],
       preferBuiltins: false,
       modulesOnly: false
     }),
-   /* obfuscatorPlugin({ //Stubbed for later inclusion
+    /* obfuscatorPlugin({ //Stubbed for later inclusion
         compact: true,
         target: 'browser',
         renameGlobals: true
-    }),*/
+    }), */
     commonjs({
       // non-CommonJS modules will be ignored, but you can also
       // specifically include/exclude files
-      include: 'node_modules/**',  // Default: undefined
-      exclude: [ 'node_modules/foo/**', 'node_modules/bar/**' ],  // Default: undefined
+      include: 'node_modules/**', // Default: undefined
+      exclude: [ 'node_modules/foo/**', 'node_modules/bar/**' ], // Default: undefined
       // these values can also be regular expressions
       // include: /node_modules/
 
       // search for files other than .js files (must already
       // be transpiled by a previous plugin!)
-      extensions: [ '.js' ],  // Default: [ '.js' ]
+      extensions: [ '.js' ], // Default: [ '.js' ]
 
       // if true then uses of `global` won't be dealt with by this plugin
-      ignoreGlobal: false,  // Default: false
+      ignoreGlobal: false, // Default: false
 
       // if false then skip sourceMap generation for CommonJS modules
-      sourceMap: false,  // Default: true
+      sourceMap: false, // Default: true
 
       // explicitly specify unresolvable named exports
       // (see below for more details)
-      namedExports: { './module.js': ['foo', 'bar' ] },  // Default: undefined
+      namedExports: { './module.js': [ 'foo', 'bar' ] }, // Default: undefined
 
       // sometimes you have to leave require statements
       // unconverted. Pass an array containing the IDs
@@ -56,4 +52,10 @@ export default {
       comments: false
     })
   ]
-};
+}
+
+export async function buildPayload (name) {
+  // let config = Object.assign({ input: filename }, rollupBaseConfig)
+  const bundle = await rollup.rollup({ input: `payload_src/${name}.js` })
+  await bundle.write(rollupBaseConfig)
+}

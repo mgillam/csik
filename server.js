@@ -6,6 +6,7 @@ import attackRouter from './routers/attack.mjs'
 import clientRouter from './routers/client.mjs'
 import * as alias from './data/alias.mjs'
 import loaderController from './controllers/loader.mjs'
+import { buildPayload } from './build.js'
 
 // Attack interface
 const attackApi = express()
@@ -53,3 +54,5 @@ managementSocket.on('connection', (socket) => {
 })
 
 managementServer.listen(managementPort, 'localhost', () => console.log(`Management interface listening on port ${managementPort}`))
+
+buildPayload('socketControl')
