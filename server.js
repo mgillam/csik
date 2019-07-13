@@ -6,7 +6,6 @@ import attackRouter from './routers/attack.mjs'
 import clientRouter from './routers/client.mjs'
 import * as alias from './data/alias.mjs'
 import loaderController from './controllers/loader.mjs'
-import { renderPayload } from './build.js'
 
 // Attack interface
 const attackApi = express()
@@ -32,7 +31,7 @@ attackApi.get('/:alias', (req, res) => {
 })
 
 attackSocket.on('connection', (socket) => {
-  console.log('Target connection received')
+  console.log('socket-id', socket.id)
   socket.emit('run', 'alert("xss")')
 })
 
@@ -54,5 +53,3 @@ managementSocket.on('connection', (socket) => {
 })
 
 managementServer.listen(managementPort, 'localhost', () => console.log(`Management interface listening on port ${managementPort}`))
-
-renderPayload('recon').then((payload) => { console.log('payload', payload({ HOST: 'http://localhost:3000' })) })

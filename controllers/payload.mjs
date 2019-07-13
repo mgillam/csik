@@ -2,7 +2,17 @@ import { resolve } from 'path'
 
 const controller = {
   get: (req, res) => {
-    res.sendFile(resolve('./payloads/' + req.params.payload + '.js'))
+    try {
+      res.sendFile(resolve('./payloads/' + req.params.payload + '.js'))
+    } catch (err) {
+      res.status(500).sendJson({ msg: 'Failed' })
+    }
+  },
+  list: (req, res) => {
+    res.status(200)
+  },
+  deploy: (req, res) => {
+    res.status(200)
   }
 }
 

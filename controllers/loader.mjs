@@ -2,7 +2,7 @@ import listDir from '../lib/listDir.js'
 import { resolve } from 'path'
 import ld from 'lodash'
 
-const payloadUrl = 'http://localhost:3000/payload/socketControl'
+const payloadUrl = 'http://localhost:3000/atk/payload/socketControl'
 
 let loaders = () => { console.log('Not ready') }
 
