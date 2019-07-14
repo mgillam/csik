@@ -1,19 +1,19 @@
-import { aliases } from './db.mjs'
+const { aliases } = require('./db')
 
-export function get (key) {
+module.get = function get (key) {
   const alias = aliases.findOne({ 'key': key })
   return alias ? { key: alias.key, name: alias.name, type: alias.type } : null
 }
 
-export function set (key, type, name) {
+module.set = function set (key, type, name) {
   aliases.insert({ key: key, type: type, name: name })
 }
 
-export function remove (key) {
+module.remove = function remove (key) {
   aliases.findAndRemove({ 'key': key })
 }
 
-export const Types = {
+module.Types = {
   LOADER: 'Loader',
   PAYLOAD: 'Payload'
 }

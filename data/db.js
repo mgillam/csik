@@ -1,8 +1,8 @@
-import Loki from 'lokijs'
+const Loki = require('lokijs')
 
 const db = new Loki('data.json')
 
 const aliases = db.addCollection('aliases')
 
-export default db
-export { aliases }
+module.exports = db
+module.aliases = aliases

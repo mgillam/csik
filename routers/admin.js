@@ -1,7 +1,7 @@
-import express from 'express'
+const express = require('express')
 
 const router = express.Router()
 
 // TODO: Implement admin API
 
-export default router
+module.exports = router

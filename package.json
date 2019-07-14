@@ -22,7 +22,7 @@
     "webpack-cli": "^3.3.5"
   },
   "scripts": {
-    "start": "NODE_PATH=. node --experimental-modules server.js",
+    "start": "NODE_PATH=. node server.js",
     "build": "webpack",
     "test": "nyc mocha"
   },

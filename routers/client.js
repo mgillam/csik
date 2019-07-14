@@ -1,6 +1,6 @@
-import express from 'express'
-import loaderController from '../controllers/loader.mjs'
-import aliasController from '../controllers/alias.mjs'
+const express = require('express')
+const loaderController = require('../controllers/loader')
+const aliasController = require('../controllers/alias')
 
 const router = express.Router()
 
@@ -16,4 +16,4 @@ router.post('/aliases/:key', aliasController.set)
 
 router.delete('/aliases/:key', aliasController.remove)
 
-export default router
+module.exports = router

@@ -1,11 +1,11 @@
-import express from 'express'
-import http from 'http'
-import socketio from 'socket.io'
-import cors from 'cors'
-import attackRouter from './routers/attack.mjs'
-import clientRouter from './routers/client.mjs'
-import * as alias from './data/alias.mjs'
-import loaderController from './controllers/loader.mjs'
+const express = require('express')
+const http = require('http')
+const socketio = require('socket.io')
+const cors = require('cors')
+const attackRouter = require('./routers/attack')
+const clientRouter = require('./routers/client')
+const alias = require('./data/alias')
+const loaderController = require('./controllers/loader')
 
 // Attack interface
 const attackApi = express()

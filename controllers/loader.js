@@ -1,6 +1,6 @@
-import listDir from '../lib/listDir.js'
-import { resolve } from 'path'
-import ld from 'lodash'
+const listDir = require('../lib/listDir.js')
+const { resolve } = require('path')
+const ld = require('lodash')
 
 const payloadUrl = 'http://localhost:3000/atk/payload/socketControl'
 
@@ -15,7 +15,7 @@ async function loadLoaders () {
   let loaderMap = {}
   while (loaders.length > 0) {
     let loader = loaders.shift()
-    ld.set(loaderMap, ld.trimEnd(loader, '.js'), await import(`../loaders/${loader}`))
+    ld.set(loaderMap, ld.trimEnd(loader, '.js'), require(`../loaders/${loader}`))
   }
   return {
     get: (key) => {
@@ -61,4 +61,4 @@ const controller = {
   }
 }
 
-export default controller
+module.exports = controller

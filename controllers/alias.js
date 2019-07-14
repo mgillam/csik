@@ -1,4 +1,4 @@
-import * as alias from '../data/alias.mjs'
+const alias = require('../data/alias')
 
 const controller = {
   set: (req, res) => {
@@ -18,4 +18,4 @@ const controller = {
   }
 }
 
-export default controller
+module.exports = controller

@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+const { resolve } = require('path')
 
 const controller = {
   get: (req, res) => {
@@ -16,4 +16,4 @@ const controller = {
   }
 }
 
-export default controller
+module.exports = controller
