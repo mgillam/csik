@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "NODE_PATH=. node --experimental-modules server.js",
-    "build": "rollup --config --format iife",
+    "build": "webpack",
     "test": "nyc mocha"
   },
   "eslintConfig": {

