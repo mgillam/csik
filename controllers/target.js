@@ -1,7 +1,8 @@
+const attackSocket = require('../serverInterfaces/attackSocket')
+
 const controller = {
   list: (req, res) => {
-    // TODO: List hooked targets
-    // Optional filter - connected - true/false
+    res.json(Object.keys(attackSocket.of('/').connected))
   },
   deploy: (req, res) => {
     // TODO: Drop payload on target

@@ -19,7 +19,7 @@ async function loadLoaders () {
   }
   return {
     get: (key) => {
-      return loaderMap[key] ? loaderMap[key].default : 'Not a loader'
+      return loaderMap[key] || 'Not a loader'
     },
     list: () => {
       return Object.keys(loaderMap)
@@ -31,6 +31,7 @@ const controller = {
   get: (req, res) => {
     // May need to be text/javascript for CVE-2015-9251
     res.set('Content-Type', 'application/javascript')
+    console.log('loader', loaders.get(req.params.loader))
     return res.send(
       loaders.get(req.params.loader).script({ PAYLOAD_URL: payloadUrl })
     )
