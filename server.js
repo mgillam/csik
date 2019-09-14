@@ -6,8 +6,9 @@ const managementSocket = require('./serverInterfaces/managementSocket')
 const attackPort = 3000
 
 attackSocket.on('connection', (socket) => {
-  console.log('socket-id', socket.id)
-  socket.emit('run', 'alert("xss")')
+  console.log('socket-id connected: ', socket.id)
+  socket.join(['hostinfo', 'log', 'debug'])
+  // socket.emit('run', 'alert("xss")')
 })
 
 attackServer.listen(attackPort, () => console.log(`CSIK Server listening on port ${attackPort}!`))
