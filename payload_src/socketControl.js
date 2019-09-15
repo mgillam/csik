@@ -1,7 +1,7 @@
 /*
 name: socketControl
 author: mic_wg <mic@secureideas.com>
-description: The main module for hooking up websocket based C2.s
+description: The main module for hooking up websocket based C2.
 */
 const io = require('socket.io-client')
 const vars = require('../payloadVariables')
