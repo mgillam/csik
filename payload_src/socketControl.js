@@ -1,7 +1,11 @@
 /*
 name: socketControl
 author: mic_wg <mic@secureideas.com>
-description: The main module for hooking up websocket based C2.
+description: The main module for hooking up websocket-based C2.
+variables:
+  CSIK_HOST:
+    type: string
+    example: http://localhost:3000
 */
 const io = require('socket.io-client')
 const vars = require('../payloadVariables')
