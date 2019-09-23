@@ -22,6 +22,8 @@ router.get('/payloads/:payload/details', payloadController.details)
 
 router.get('/targets', targetController.list)
 
+router.get('/targets/:target', targetController.details)
+
 router.post('/targets/:target/deploy/:payload', targetController.deploy)
 
 module.exports = router
