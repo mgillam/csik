@@ -8,18 +8,18 @@
   "license": "GPL-3.0",
   "type": "module",
   "devDependencies": {
-    "babel-eslint": "^10.0.2",
-    "chai": "^4.2.0",
-    "eslint": "^6.0.1",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.3.0",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^9.2.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-standard": "^4.1.0",
     "esm": "^3.2.25",
-    "mocha": "^6.1.4",
+    "mocha": "^8.2.1",
     "nyc": "^14.1.1",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "start": "NODE_PATH=. node server.js",
@@ -42,15 +42,15 @@
   },
   "dependencies": {
     "app-root-path": "^2.2.1",
-    "browserify": "^16.3.0",
+    "browserify": "^16.5.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "gray-matter": "^4.0.2",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.11",
-    "lokijs": "^1.5.6",
-    "socket.io": "^2.2.0",
+    "lodash": "^4.17.20",
+    "lokijs": "^1.5.11",
+    "socket.io": "^2.4.1",
     "sshpk": "^1.16.1",
-    "webpack": "^4.35.3"
+    "webpack": "^5.21.2"
   }
 }
